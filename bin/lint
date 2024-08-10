@@ -13,22 +13,24 @@ while (( $# )); do
         install|init ) :
             INIT=1
             ;;
+        update ) :
+            UPDATE=1
+            ;;
     esac
     shift
 done
 
-if [[ -n $INIT ]]; then
+if [[ -n $INIT || -n $UPDATE]]; then
   echo "[@diplodoc/lint] Add initial lint configs"
-
   cp -r "$SRCDIR/scaffolding/" .
 
-  echo "[@diplodoc/lint] Extend package.json configuration"
-
-  node "$SRCDIR/scripts/modify-package.js"
-
   echo "[@diplodoc/lint] Extend .ignore configuration"
-
   node "$SRCDIR/scripts/modify-ignore.js"
+fi
+
+if [[ -n $INIT ]]; then
+  echo "[@diplodoc/lint] Extend package.json configuration"
+  node "$SRCDIR/scripts/modify-package.js"
 
   $BINDIR/husky install
 
