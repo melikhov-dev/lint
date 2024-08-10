@@ -20,7 +20,7 @@ while (( $# )); do
     shift
 done
 
-if [[ -n $INIT || -n $UPDATE]]; then
+if [[ -n "$INIT$UPDATE"]]; then
   echo "[@diplodoc/lint] Add initial lint configs"
   cp -r "$SRCDIR/scaffolding/" .
 
