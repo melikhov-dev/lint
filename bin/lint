@@ -1,0 +1,54 @@
+#!/usr/bin/env bash
+
+set -e
+
+BINDIR=$(dirname $0)
+SRCDIR=$(dirname $(dirname $(node -pe "require('fs').realpathSync('$0')")))
+
+while (( $# )); do
+    case "$1" in
+        --fix ) :
+            FIX=1
+            ;;
+        install|init ) :
+            INIT=1
+            ;;
+    esac
+    shift
+done
+
+if [[ -n $INIT ]]; then
+  echo "[@diplodoc/lint] Add initial lint configs"
+
+  cp -r "$SRCDIR/scaffolding/" .
+
+  echo "[@diplodoc/lint] Extend package.json configuration"
+
+  node "$SRCDIR/scripts/modify-package.js"
+
+  echo "[@diplodoc/lint] Extend .ignore configuration"
+
+  node "$SRCDIR/scripts/modify-ignore.js"
+
+  $BINDIR/husky install
+
+  exit 0
+fi
+
+if [[ -n $FIX ]]; then
+  echo "Run linters in fix mode"
+
+  $BINDIR/eslint '**/*.{js,jsx,ts,tsx}' --fix
+  $BINDIR/prettier --write 'src/**/*.{js,jsx,ts,tsx}'
+  $BINDIR/stylelint src/**/*.scss --fix
+
+  exit 0
+fi
+
+echo "Run linters"
+
+$BINDIR/eslint '**/*.{js,jsx,ts,tsx}'
+$BINDIR/prettier --check 'src/**/*.{js,jsx,ts,tsx}'
+$BINDIR/stylelint src/**/*.scss
+
+
