@@ -10,8 +10,8 @@ try {
     throw 'Unable to modify ' + filename;
 }
 
-function configure(command, impl, strict = true) {
-    if (pkg.scripts[command]) {
+function configure(command, impl, force = false) {
+    if (pkg.scripts[command] && !force) {
         if (pkg.scripts[command] !== impl && strict) {
             throw `Lint command '${command}' already configured with different program`;
         }
@@ -24,5 +24,6 @@ function configure(command, impl, strict = true) {
 configure('lint', 'lint update && lint');
 configure('lint:fix', 'lint update && lint fix');
 configure('pre-commit', 'lint update && lint-staged');
+configure('prepare', 'husky || true', true);
 
 writeFileSync(filename, JSON.stringify(pkg, null, 2), 'utf8');
