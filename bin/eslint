@@ -8,4 +8,5 @@ if [[ -z "$BINDIR" ]]; then
 fi
 
 # Redirect to original eslint bin
+chmod +x $BINDIR/bin/eslint.js
 $BINDIR/bin/eslint.js $@

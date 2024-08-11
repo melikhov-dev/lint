@@ -8,4 +8,5 @@ if [[ -z "$BINDIR" ]]; then
 fi
 
 # Redirect to original husky bin
+chmod +x $BINDIR/bin.js
 $BINDIR/bin.js $@

@@ -8,4 +8,5 @@ if [[ -z "$BINDIR" ]]; then
 fi
 
 # Redirect to original lint-staged bin
+chmod +x $BINDIR/bin/lint-staged.js
 $BINDIR/bin/lint-staged.js $@

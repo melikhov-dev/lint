@@ -8,4 +8,5 @@ if [[ -z "$BINDIR" ]]; then
 fi
 
 # Redirect to original prettier bin
+chmod +x $BINDIR/bin/prettier.cjs
 $BINDIR/bin/prettier.cjs $@

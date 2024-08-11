@@ -8,4 +8,5 @@ if [[ -z "$BINDIR" ]]; then
 fi
 
 # Redirect to original stylelint bin
+chmod +x $BINDIR/bin/stylelint.mjs
 $BINDIR/bin/stylelint.mjs $@
