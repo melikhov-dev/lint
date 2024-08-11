@@ -24,13 +24,6 @@ const ignores = {
         ...SYSTEM,
         ...INSTALL,
         ...ARTIFACTS,
-        '/.eslintrc.js',
-        '/.prettierrc.js',
-        '/.stylelintrc.js',
-        '/.lintstagedrc.js',
-        // '/.eslinignore',
-        // '/.prettierignore',
-        // '/.stylelintignore',
     ],
     '.eslintignore': [
         ...SYSTEM,
