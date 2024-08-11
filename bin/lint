@@ -21,22 +21,18 @@ while (( $# )); do
 done
 
 if [[ -n "$INIT$UPDATE" ]]; then
+  if [[ -n $INIT ]]; then
+    echo "[@diplodoc/lint] Extend package.json configuration"
+    node "$SRCDIR/scripts/modify-package.js"
+
+    $BINDIR/husky init
+  fi
+
   echo "[@diplodoc/lint] Add initial lint configs"
   cp -a "$SRCDIR/scaffolding/." .
 
   echo "[@diplodoc/lint] Extend .ignore configuration"
   node "$SRCDIR/scripts/modify-ignore.js"
-
-  if [[ -z $INIT ]]; then
-    exit 0
-  fi
-fi
-
-if [[ -n $INIT ]]; then
-  echo "[@diplodoc/lint] Extend package.json configuration"
-  node "$SRCDIR/scripts/modify-package.js"
-
-  $BINDIR/husky init
 
   exit 0
 fi
