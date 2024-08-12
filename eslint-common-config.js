@@ -20,6 +20,7 @@ module.exports = {
         'consistent-return': 'off',
         'no-implicit-globals': 'off',
         'no-param-reassign': 'off',
+        'no-shadow': 'off',
         '@typescript-eslint/no-shadow': 'off',
         'import/no-extraneous-dependencies': 'error',
         'import/order': [
