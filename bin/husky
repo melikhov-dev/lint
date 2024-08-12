@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-BINDIR=$(dirname $(node -pe "require.resolve('husky')"))
+SRCDIR=$(dirname $(dirname $(node -pe "require('fs').realpathSync('${0//\\//}')")))
+BINDIR=$(dirname $(cd "$SRCDIR"; node -pe "require.resolve('husky')"))
 
 if [[ -z "$BINDIR" ]]; then
   echo "Required package 'husky' not found"
