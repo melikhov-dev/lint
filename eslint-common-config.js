@@ -10,6 +10,7 @@ module.exports = {
             '.prettierrc.js',
             '.stylelintrc.js',
             '.lintstagedrc.js',
+            'jest.config.js',
         ],
         env: {
             node: true,
