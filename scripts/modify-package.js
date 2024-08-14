@@ -12,7 +12,7 @@ try {
 
 function configure(command, impl, force = false) {
     if (pkg.scripts[command] && !force) {
-        if (pkg.scripts[command] !== impl && strict) {
+        if (pkg.scripts[command] !== impl) {
             throw `Lint command '${command}' already configured with different program`;
         }
     } else {
