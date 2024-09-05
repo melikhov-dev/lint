@@ -4,6 +4,14 @@ module.exports = {
         '@gravity-ui/eslint-config',
         process.env.npm_command && '@gravity-ui/eslint-config/prettier',
     ].filter(Boolean),
+    parserOptions: {
+        requireConfigFile: false,
+        babelOptions: {
+            plugins: [
+                '@babel/plugin-syntax-import-assertions'
+            ]
+        }
+    },
     overrides: [{
         files: [
             '.eslintrc.js',
