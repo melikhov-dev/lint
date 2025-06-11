@@ -14,6 +14,7 @@ const ARTIFACTS = [
     '/build',
     '/cache',
     '/coverage',
+    '/external',
 ];
 const INSTALL = [
     'node_modules',
